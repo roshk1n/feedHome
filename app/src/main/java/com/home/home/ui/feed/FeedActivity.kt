@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.home.home.R
 import com.home.home.ui.helpers.SpaceItemDecoration
 import kotlinx.android.synthetic.main.activity_feed.*
@@ -38,6 +39,7 @@ class FeedActivity : AppCompatActivity() {
         viewModel.getFeedsLiveData().observe(this, Observer {
             it.get()?.let { item ->
                 itemsAdapter.addItem(item)
+                animToFirstIfNeeded()
             }
         })
 
@@ -50,6 +52,13 @@ class FeedActivity : AppCompatActivity() {
         }
 
         weightFilterEt.addTextChangedListener(weightFilterTextWatcher)
+    }
+
+    private fun animToFirstIfNeeded() {
+        val pos =
+            (feedsRv.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+        if (pos == 0)
+            feedsRv.scrollToPosition(0)
     }
 
     override fun onDestroy() {
