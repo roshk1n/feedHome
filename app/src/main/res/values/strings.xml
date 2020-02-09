@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Home</string>
+    <string name="feed_title">Incoming Item Feed</string>
+    <string name="feed_start_label">Start</string>
+    <string name="feed_stop_label">Stop</string>
+    <string name="feed_weight_filter_label">Weight filter:</string>
+</resources>
